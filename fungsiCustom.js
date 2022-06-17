@@ -30,7 +30,7 @@ function bacaData(fnCallback){
                                 if (err) fncallback(err);                               
                                 const newWord = change(data);
                                 save.push(newWord);
-                                
+
                                             fs.readFile(file3,{encoding: 'utf8'},(err, data) => {
                                                 if (err) fncallback(err);                
                                                 const newWord = change(data);
@@ -41,6 +41,20 @@ function bacaData(fnCallback){
             })               
           }
 
+function change(data){
+  const kata = JSON.parse(data);
+  if (kata.message != undefined){
+    const word = kata.message.split(" ");
+    return word[word.length - 1];
+    }
+  else if (kata[0].message != undefined){ 
+    const word = kata[0].message.split(" ");
+    return word[word.length - 1];
+    }
+  else if (kata[0].data.message != undefined){                      
+    const word = kata[0].data.message.split(" "); 
+    return word[word.length - 1];}  
+}
 // ! JANGAN DIMODIFIKASI
 module.exports = {
   modifyFile1,
