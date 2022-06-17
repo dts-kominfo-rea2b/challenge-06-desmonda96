@@ -18,7 +18,28 @@ let modifyFile3 = (val) => {
 
 // TODO: Kerjakan bacaData
 // gunakan variabel file1, file2, dan file3
-const bacaData = null;
+let files = [file1, file2, file3];
+function bacaData(fnCallback){
+            let save = [];          
+            fs.readFile(file1,{encoding: 'utf8'},(err, data) => {
+                if (err) fncallback(err);
+                const newWord = change(data);
+                save.push(newWord);
+
+                            fs.readFile(file2,{encoding: 'utf8'},(err, data) => {
+                                if (err) fncallback(err);                               
+                                const newWord = change(data);
+                                save.push(newWord);
+                                
+                                            fs.readFile(file3,{encoding: 'utf8'},(err, data) => {
+                                                if (err) fncallback(err);                
+                                                const newWord = change(data);
+                                                save.push(newWord);                          
+                                                fnCallback(null,save);
+                })
+              })
+            })               
+          }
 
 // ! JANGAN DIMODIFIKASI
 module.exports = {
